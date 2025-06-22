@@ -1,0 +1,203 @@
+<div class="desktop-toggler">
+<button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed" data-dismiss-class="app-sidebar-toggled" data-toggle-target=".app">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</button>
+</div>
+
+
+
+<div class="brand">
+    <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
+      {% if Configs.ctf_logo %}
+        <img
+            class="img-responsive ctf_logo"
+            src="{{ url_for('views.files', path=Configs.ctf_logo) }}"
+            alt="{{ Configs.ctf_name }}"
+            height="25"
+        >
+      {% else %}
+	<span class="brand-img">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="float-left"><path fill="none" d="M0 0h1000v1000H0z"></path><path d="M742.6 441.1h-12.4l-7.9-13.6 7.9-13.6h22c-7.5-13.1-24.3-17.7-37.4-10.1-5.7 3.3-10 8.5-12.2 14.7h-19.8l-9.1-9.1H549.8c52-14.2 75.5-59 81-71.2.9-1.9.8-4.2-.1-6-6.5-13.1-36.7-65-103.2-62 1.3-9.7 5.8-18.8 12.7-25.7l7.4-7.4s-17.3-26.6-47.6-26.6-47.6 26.5-47.6 26.5l7.4 7.4c8.4 8.4 13.2 19.8 13.2 31.8v2.2c-10 1-20.6 1.7-29.9 1.7-8.8.1-17.5-.9-26-3.2-10.2-2.9-25.2-10.6-25.2-29 0-11.6 9.1-19.1 18.1-19.1 2.7 0 5.7.6 7.4 2.8-5.1-.4-9.5 3.5-9.8 8.5-.2 3.4 1.4 6.7 4.4 8.5 2.3 1.2 5 1.5 7.6.7 5.5-1.5 8.1-6.9 8-12.2-.2-7-4.3-13.3-10.6-16.3-5.6-2.7-12.5-2.3-18.3-.4-6.3 2.2-11.7 6.3-15.4 11.9-8 12.1-6.1 29.1 1.6 40.9 8.3 12.6 22.6 19.2 36.9 22.1 1.9.4 3.8.7 5.6 1 13 1.8 26 2.5 39.1 2.1v.7c0 4.1 1.8 8 4.9 10.7 1.7 1.4 1.9 3.9.5 5.6-.2.2-.3.4-.5.5-5.9 5.1-6.5 14.1-1.4 20 .4.5.9 1 1.4 1.4 1.7 1.5 1.9 4 .5 5.7-.1.2-.3.3-.5.5-5.9 5.1-6.5 14.1-1.4 20 .4.5.9 1 1.4 1.4 1.7 1.5 1.9 4 .5 5.7-.1.2-.3.3-.5.5-5.9 5.1-6.5 14.1-1.4 20 .4.5.9 1 1.4 1.4 1.7 1.4 1.9 3.9.5 5.6-.2.2-.3.4-.5.5-3.1 2.7-4.9 6.6-4.9 10.7H379l-9.1 9.1h-18.2v-9.2l-9.1-9.1h-27.5v9.2h-18.2v9.1h18.2v18.2h-18.2v9.1h18.2v9.1h27.5l9-9v-9.2h18.2l9.1 9.1h94v104c-46.9-19.3-90.2-48.8-141.2-52-12.3-.8-17.6-.6-28.2.9-10 1.4-19.5 4.4-28.1 9.8-8.1 5-14.9 11.9-19.8 20.1-5.1 8.7-7.8 18.6-7.9 28.7-.1 8.1 1.9 16.1 6 23.1 7.8 13 22 20.6 37.1 20 8.8-.4 16.7-5.2 21.2-12.7 4.5-7.7 5.3-18.8-1.7-25.3-5.6-5.2-15.9-6.1-20 1.5-3.6 6.8 1.6 15.2 9.2 15.2 2.2 0 4.3-.7 6.1-2-.9 4.5-6.2 10.2-14.9 10.2-13.6 0-25.3-10.8-25.3-27.2.2-10.5 4.4-20.5 11.8-28 7.7-7.7 18.1-11.9 28.7-13.2 16.1-2 31.5 2.1 34 2.7 51.9 12.8 83.4 53 132.9 76.3v52.1c0 31.7 3.8 63.2 11.5 94 6 24.1 12.6 40.1 14.8 45.2.2.4.7.6 1.1.4.2-.1.4-.2.4-.4 2.2-5.1 8.8-21.1 14.8-45.2 7.6-30.8 11.5-62.3 11.5-94v-36.1c6.1.7 12.2 1.1 18.3 1.1 91.9 0 130.7-86.7 137.4-103.8.7-1.8.4-3.8-.8-5.3-19.1-23.3-41.5-43.5-66.7-60h58.2l9.1-9.1h19.8c5.1 14.3 20.7 21.7 35 16.7 6.2-2.2 11.4-6.5 14.6-12.2l-9.2-.1zm-156.7-106h32.6c1.2 0 2.3 1 2.2 2.3 0 .4-.1.7-.2 1-5.7 11-12.8 21.2-21.3 30.3-13 13.9-28 23.8-44.7 29.7-1.2.4-2.5-.2-2.9-1.4-.3-.8-.1-1.8.6-2.4 1.1-1 2.1-2.1 3.2-3.1 15.5-15.9 25.5-35.2 28.2-54.4.2-1.2 1.2-2 2.3-2zM527 292.5c25.9-1.6 48.3 3.4 48.3 33.7 0 30.7-21.4 60.2-48.3 76V292.5zm0 153.3h35.6c21.7 17 37.9 38.7 37.9 61 0 36.3-20.4 59.8-61.1 59.8-4.1 0-8.3-.3-12.4-.8v-120zm-44.9-2.5H500v116.4c-5.9-1.8-11.9-4-17.9-6.3V443.3zM500 649.9v104.9c0 .9-.7 1.6-1.6 1.6-.7 0-1.3-.5-1.5-1.1-9.9-34.2-14.9-69.7-14.9-105.4v-48.1c5.9 2.4 11.8 4.6 17.9 6.4v41.7zm170-140.1c1.3 0 2.3 1 2.3 2.3 0 .3-.1.6-.2.9-6.9 15.5-15.9 30.1-26.7 43.2-27.2 32.9-60.8 49.6-100.1 49.6-46 0-92.6-45.2-106-58.9-.4-.4-.4-1.1 0-1.6.3-.3.8-.4 1.2-.2 35.5 16.8 68.1 30.6 98.8 30.6 42.2 0 68.1-23.6 70.1-63.6.1-1.2 1.1-2.2 2.3-2.2H670z" fill="#0081ff"></path></svg>
+	</span>
+	<span class="brand-text">
+        {{ Configs.ctf_name }}
+	</span>
+      {% endif %}
+    </a>
+  </div>
+
+<div id="sidebar" class="app-sidebar">
+<div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+<div class="menu">
+<div class="menu-header">Navigation</div>
+{% for page in Plugins.user_menu_pages %}
+<div class="menu-item">
+<a href="{{ page.route }}" class="menu-link">
+<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+<span class="menu-text">{{ page.title }}</span>
+</a>
+</div>
+{% endfor %}
+
+{% if Configs.account_visibility != 'admins' %}
+<div class="menu-item">
+            <a class="menu-link" href="{{ url_for('users.listing') }}">
+<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+<span class="menu-text">Users</span>
+            </a>
+</div>
+          {% if Configs.user_mode == 'teams' %}
+<div class="menu-item">
+            <a class="menu-link" href="{{ url_for('teams.listing') }}">
+<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+<span class="menu-text">Teams</span>
+              </a>
+</div>
+          {% endif %}
+<div class="menu-divider"></div>
+{% endif %}
+
+        {% if Configs.account_visibility != 'admins' and Configs.score_visibility != 'admins' %}
+<div class="menu-item">
+            <a class="menu-link" href="{{ url_for('scoreboard.listing') }}">
+<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+<span class="menu-text">Scoreboard</span>
+            </a>
+</div>
+        {% endif %}
+
+<div class="menu-item">
+          <a class="menu-link" href="{{ url_for('challenges.listing') }}">
+<span class="menu-icon"><i class="bi bi-cpu"></i></span>
+<span class="menu-text">Challenges</span>
+	</a>
+</div>
+
+</div>
+</div>
+</div>
+
+      <ul class="navbar-nav ms-md-auto d-block d-sm-flex d-md-flex">
+        {% if authed() %}
+
+          {% if is_admin() %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.view') }}">
+                <span
+                    class="d-block"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Admin Panel"
+                >
+                    <i class="fas fa-wrench d-none d-md-block d-lg-none"></i>
+                </span>
+                <span class="d-sm-block d-md-none d-lg-block">
+                  <i class="fas fa-wrench pe-1"></i>
+                  {% trans %}Admin Panel{% endtrans %}
+                </span>
+              </a>
+            </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('views.notifications') }}">
+              <span
+                  class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                  title="Notifications"
+              >
+                <i class="fas fa-bell d-none d-md-block d-lg-none"></i>
+              </span>
+              <span class="d-sm-block d-md-none d-lg-block">
+                  <i class="fas fa-bell pe-1"></i>
+                  <span x-data x-show="$store.unread_count > 0" x-text="$store.unread_count" class="badge rounded-pill bg-danger badge-notification"></span>
+                  {% trans %}Notifications{% endtrans %}
+              </span>
+            </a>
+          </li>
+
+          {% if Configs.user_mode == "teams" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('teams.private') }}">
+                <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Team">
+                  <i class="fas fa-users d-none d-md-block d-lg-none"></i>
+                </span>
+                <span class="d-sm-block d-md-none d-lg-block">
+                  <i class="fas fa-users pe-1"></i>
+                  {% trans %}Team{% endtrans %}
+                </span>
+              </a>
+            </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('users.private') }}">
+              <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+                <i class="fas fa-user-circle d-none d-md-block d-lg-none"></i>
+              </span>
+              <span class="d-sm-block d-md-none d-lg-block">
+                <i class="fas fa-user-circle pe-1"></i>
+                {% trans %}Profile{% endtrans %}
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('views.settings') }}">
+              <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings">
+                <i class="fas fa-cogs d-none d-md-block d-lg-none"></i>
+              </span>
+              <span class="d-sm-block d-md-none d-lg-block">
+                <i class="fas fa-cogs pe-1"></i>
+                {% trans %}Settings{% endtrans %}
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">
+              <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+                <i class="fas fa-sign-out-alt d-none d-md-block d-lg-none"></i>
+              </span>
+              <span class="d-sm-block d-md-none d-lg-block">
+                <i class="fas fa-sign-out-alt pe-1"></i><span class="d-lg-none">
+                  {% trans %}Logout{% endtrans %}
+                </span>
+              </span>
+            </a>
+          </li>
+        {% else %}
+
+          {% if registration_visible() %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.register') }}">
+                <span
+                    class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="Register"
+                >
+                  <i class="fas fa-user-plus d-none d-md-block d-lg-none"></i>
+                </span>
+                <span class="d-sm-block d-md-none d-lg-block">
+                  <i class="fas fa-user-plus pe-1"></i>
+                  {% trans %}Register{% endtrans %}
+                </span>
+              </a>
+            </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.login') }}">
+              <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Login">
+                <i class="fas fa-sign-in-alt d-none d-md-block d-lg-none"></i>
+              </span>
+              <span class="d-sm-block d-md-none d-lg-block">
+                <i class="fas fa-sign-in-alt pe-1"></i>
+                {% trans %}Login{% endtrans %}
+              </span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>

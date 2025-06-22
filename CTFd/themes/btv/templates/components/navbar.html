@@ -1,0 +1,306 @@
+<div id="header" class="app-header">
+  
+  <div class="desktop-toggler">
+    <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed" data-dismiss-class="app-sidebar-toggled" data-toggle-target=".app">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+  
+  <div class="mobile-toggler">
+    <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-mobile-toggled" data-toggle-target=".app">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  
+  <div class="brand">
+    <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
+      {% if Configs.ctf_logo %}
+      <img
+	class="img-responsive ctf_logo"
+	src="{{ url_for('views.files', path=Configs.ctf_logo) }}"
+	alt="{{ Configs.ctf_name }}"
+	height="25"
+	>
+      {% else %}
+      <span class="brand-img">
+      </span>
+      <span class="brand-text">
+	{{ Configs.ctf_name }}
+      </span>
+      {% endif %}
+    </a>
+  </div>
+
+  <div class="menu">
+    <div class="menu-item dropdown">
+    </div>
+  </div>
+
+</div>
+
+<div id="sidebar" class="app-sidebar">
+  <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+    <div class="menu">
+
+      {% if authed() %}
+      <div class="menu-header">Play CTF</div>
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('challenges.listing') }}">
+          <div class="menu-icon">
+            <i class="bi bi-cpu"></i>
+            <span class="w-5px h-5px rounded-3 bg-theme position-absolute top-0 end-0 mt-3px me-3px"></span>
+          </div>
+          <span class="menu-text">Challenges</span>
+        </a>
+      </div>
+
+      <div class="menu-header">Account</div>
+
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('users.private') }}">
+          <div class="menu-icon">
+            <i class="bi bi-check-lg"></i>
+          </div>
+          <span class="menu-text">My solves</span>
+        </a>
+      </div>
+      
+      {% if Configs.user_mode == "teams" %}
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('teams.private') }}">
+          <div class="menu-icon">
+            <i class="bi bi-people"></i>
+          </div>
+          <span class="menu-text">My team</span>
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('views.settings') }}">
+          <div class="menu-icon">
+            <i class="bi bi-person-circle"></i>
+          </div>
+          <span class="menu-text">Profile</span>
+        </a>
+      </div>
+
+
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('views.notifications') }}">
+          <div class="menu-icon">
+            <i class="bi bi-bell"></i>
+            <span class="w-5px h-5px rounded-3 bg-red position-absolute top-0 end-0 mt-3px me-3px"></span>
+          </div>
+          <span class="menu-text">Notifications</span>
+        </a>
+      </div>
+
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('auth.logout') }}">
+          <div class="menu-icon">
+            <i class="bi bi-toggle-off"></i>
+          </div>
+          <span class="menu-text">Logout</span>
+        </a>
+      </div>
+
+      
+
+      {% else %}
+      <div class="menu-header">Play CTF</div>
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('auth.login') }}">
+          <div class="menu-icon">
+            <i class="bi bi-cpu"></i>
+            <span class="w-5px h-5px rounded-3 bg-theme position-absolute top-0 end-0 mt-3px me-3px"></span>
+          </div>
+          <span class="menu-text">Login</span>
+        </a>
+      </div>
+      {% if registration_visible() %}
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('auth.register') }}">
+          <div class="menu-icon">
+            <i class="bi bi-cpu"></i>
+            <span class="w-5px h-5px rounded-3 bg-theme position-absolute top-0 end-0 mt-3px me-3px"></span>
+          </div>
+          <span class="menu-text">Register</span>
+        </a>
+      </div>
+      {% endif %}
+      {% endif %}
+
+      
+      <div class="menu-header">Stats</div>
+      {% if null %}
+      {% for page in Plugins.user_menu_pages %}
+      <div class="menu-item">
+	<a href="{{ page.route }}" class="menu-link">
+	  <span class="menu-icon"><i class="bi bi-cpu"></i></span>
+	  <span class="menu-text">{{ page.title }}</span>
+	</a>
+      </div>
+      {% endfor %}
+      {% endif %}
+      
+      {% if Configs.account_visibility != 'admins' %}
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('users.listing') }}">
+	  <span class="menu-icon"><i class="bi bi-person"></i></span>
+	  <span class="menu-text">Users</span>
+        </a>
+      </div>
+      {% if Configs.user_mode == 'teams' %}
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('teams.listing') }}">
+	  <span class="menu-icon"><i class="bi bi-people"></i></span>
+	  <span class="menu-text">Teams</span>
+        </a>
+      </div>
+      {% endif %}
+      <div class="menu-divider"></div>
+      {% endif %}
+      
+      {% if Configs.account_visibility != 'admins' and Configs.score_visibility != 'admins' %}
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('scoreboard.listing') }}">
+	  <span class="menu-icon"><i class="bi bi-trophy"></i></span>
+	  <span class="menu-text">Scoreboard</span>
+        </a>
+      </div>
+      {% endif %}
+      
+      {% if authed() %}
+      {% if is_admin() %}
+      <div class="menu-header">Admin</div>
+      <div class="menu-item">
+        <a class="menu-link" href="{{ url_for('admin.view') }}">
+          <span class="menu-icon"><i class="bi bi-gear"></i></span>
+          <span class="menu-text">Admin panel</span>
+        </a>
+      </div>
+      <div class="menu-divider"></div>
+      {% endif %}
+      {% endif %}
+
+
+    </div>
+  </div>
+</div>
+
+
+{% if null %}
+<ul class="navbar-nav ms-md-auto d-block d-sm-flex d-md-flex">
+  {% if authed() %}
+  
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('views.notifications') }}">
+      <span
+        class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="Notifications"
+        >
+        <i class="fas fa-bell d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-bell pe-1"></i>
+        <span x-data x-show="$store.unread_count > 0" x-text="$store.unread_count" class="badge rounded-pill bg-danger badge-notification"></span>
+        {% trans %}Notifications{% endtrans %}
+      </span>
+    </a>
+  </li>
+  
+  {% if Configs.user_mode == "teams" %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('teams.private') }}">
+      <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Team">
+        <i class="fas fa-users d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-users pe-1"></i>
+        {% trans %}Team{% endtrans %}
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('users.private') }}">
+      <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile">
+        <i class="fas fa-user-circle d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-user-circle pe-1"></i>
+        {% trans %}Profile{% endtrans %}
+      </span>
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('views.settings') }}">
+      <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings">
+        <i class="fas fa-cogs d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-cogs pe-1"></i>
+        {% trans %}Settings{% endtrans %}
+      </span>
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">
+      <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+        <i class="fas fa-sign-out-alt d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-sign-out-alt pe-1"></i><span class="d-lg-none">
+          {% trans %}Logout{% endtrans %}
+        </span>
+      </span>
+    </a>
+  </li>
+  {% else %}
+  
+  {% if registration_visible() %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.register') }}">
+      <span
+        class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="Register"
+        >
+        <i class="fas fa-user-plus d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-user-plus pe-1"></i>
+        {% trans %}Register{% endtrans %}
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">
+      <span class="d-block" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Login">
+        <i class="fas fa-sign-in-alt d-none d-md-block d-lg-none"></i>
+      </span>
+      <span class="d-sm-block d-md-none d-lg-block">
+        <i class="fas fa-sign-in-alt pe-1"></i>
+        {% trans %}Login{% endtrans %}
+      </span>
+    </a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}
+
+<button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
+
+
+
+

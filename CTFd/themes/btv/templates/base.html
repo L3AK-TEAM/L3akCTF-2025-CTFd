@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" class="bg-cover-6">
+<head>
+  <title>{{ Configs.ctf_name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="{{ Configs.ctf_small_icon }}" type="image/x-icon">
+
+  {% block stylesheets %}
+  {% endblock %}
+
+  {{ Plugins.styles }}
+    
+
+  <script type="text/javascript">
+      window.init = {
+          'urlRoot': "{{ request.script_root }}",
+          'csrfNonce': "{{ Session.nonce }}",
+          'userMode': "{{ Configs.user_mode }}",
+          'userId': {{ Session.id }},
+          'userName': {{ User.name | tojson }},
+          'userEmail': {{ User.email | tojson }},
+          'teamId': {{ Team.id | tojson }}, 
+          'teamName': {{ Team.name | tojson }},
+          'start': {{ Configs.start | tojson }},
+          'end': {{ Configs.end | tojson }},
+          'themeSettings': {{ Configs.theme_settings | tojson }},
+          'eventSounds': [
+            "/themes/core/static/sounds/notification.webm",
+            "/themes/core/static/sounds/notification.mp3",
+          ],
+      }
+  </script>
+
+  <!-- {{ Configs.theme_header }} -->
+    <link href="/themes/btv/static/external/static/assets/css/vendor.min.css" rel="stylesheet">
+    <link href="/themes/btv/static/external/static/assets/css/app.min.css" rel="stylesheet">
+    <link href="/themes/btv/static/external/static/assets/css/challenge.css" rel="stylesheet">
+</head>
+<body class="theme-blue">
+<div id="app" class="app app-footer-fixed">
+{% include "components/navbar.html" %}
+
+<main role="main" style="padding-top: 1rem; padding-bottom: 1rem;" class="app-content">
+  {% block content %}
+  {% endblock %}
+</main>
+
+<footer class="footer">
+  <div id="footer" class="app-footer">
+    <a href="https://ctfd.io" class="text-secondary">
+        {% trans %}Powered by CTFd{% endtrans %}
+    </a>
+  </div>
+</footer>
+
+{% include "components/notifications.html" %}
+
+
+{% block scripts %}
+  {{ Assets.js("assets/js/index.js") }}
+{% endblock %}
+
+{{ Plugins.scripts }}
+
+</div> 
+<!-- {{ Configs.theme_footer }} -->
+    <script src="/themes/btv/static/external/static/assets/js/vendor.min.js"></script>
+    <script src="/themes/btv/static/external/static/assets/js/app.min.js"></script>
+</body>
+</html>

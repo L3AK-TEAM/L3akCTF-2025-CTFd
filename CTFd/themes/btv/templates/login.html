@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login">
+  <div class="login-content">
+
+<h1 class="text-center">Login</h1>
+
+        {% include "components/errors.html" %}
+
+        {% if integrations.mlc() %}
+          <a class="btn btn-secondary btn-lg btn-block w-100" href="{{ url_for('auth.oauth_login') }}">
+            Login with Major League Cyber
+          </a>
+
+          <hr>
+        {% endif %}
+
+        {% with form = Forms.auth.LoginForm() %}
+          <form method="post" accept-charset="utf-8" autocomplete="off">
+            <div class="md-3">
+              <b>{{ form.name.label(class="form-label") }}</b>
+              {{ form.name(class="form-control form-control-lg bg-inverse bg-opacity-5", value=name) }}
+            </div>
+		<br>
+
+            <div class="md-3">
+	    <div class="d-flex">
+              <b>{{ form.password.label(class="form-label") }}</b>
+              <a href="{{ url_for('auth.reset_password') }}" class="ms-auto text-inverse text-decoration-none text-opacity-50">Forgot password?</a>
+	    </div>
+              {{ form.password(class="form-control form-control-lg bg-inverse bg-opacity-5", value=password) }}
+            </div>
+		<br>
+
+            <div class="md-3">
+              {{ form.submit(class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3") }}
+            </div>
+
+            {{ form.nonce() }}
+          </form>
+        {% endwith %}
+    </div>
+  </div>
+{% endblock %}
