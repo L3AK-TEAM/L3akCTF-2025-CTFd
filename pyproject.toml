@@ -1,5 +1,6 @@
 [project]
-name = ""
+name = "l3ak-ctfd-2025"
+requires-python = ">=3.11,<3.12"
 version = "0.0.1"
 dependencies = [
     "flask==2.0.3",
@@ -38,6 +39,7 @@ dependencies = [
     "cffi==1.17.1",
     "six==1.16.0",
     "urllib3==1.26.20",
+    "psycopg2-binary>=2.9.10",
 ]
 
 [tool.uv]

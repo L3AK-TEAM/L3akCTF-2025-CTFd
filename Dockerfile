@@ -1,14 +1,14 @@
-FROM python:3.11-slim-bookworm AS build
+FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim AS build
 
 WORKDIR /opt/CTFd
 
 # hadolint ignore=DL3008
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        build-essential \
-        libffi-dev \
-        libssl-dev \
-        git \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && python -m venv /opt/venv
@@ -17,22 +17,17 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 COPY . /opt/CTFd
 
-RUN pip install --no-cache-dir -r requirements.txt \
-    && for d in CTFd/plugins/*; do \
-        if [ -f "$d/requirements.txt" ]; then \
-            pip install --no-cache-dir -r "$d/requirements.txt";\
-        fi; \
-    done;
+RUN uv sync --locked
 
 
-FROM python:3.11-slim-bookworm AS release
+FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim AS release
 WORKDIR /opt/CTFd
 
 # hadolint ignore=DL3008
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        libffi8 \
-        libssl3 \
+    libffi8 \
+    libssl3 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
