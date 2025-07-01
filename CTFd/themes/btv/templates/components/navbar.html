@@ -45,6 +45,32 @@
 
 <div id="sidebar" class="app-sidebar">
   <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+    <style>
+      .menu-item .menu-link {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      .menu-item .menu-icon {
+        font-size: 18px;
+        margin-right: 12px;
+        width: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .menu-item .menu-icon i {
+        font-size: 18px;
+      }
+      .menu-text {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .menu-header {
+        font-size: 14px;
+        padding: 16px 20px 8px 20px;
+        font-weight: 600;
+      }
+    </style>
     <div class="menu">
 
       {% if authed() %}
