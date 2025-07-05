@@ -19,6 +19,25 @@ class MailgunEmailProvider(EmailProvider):
         mailgun_api_key = get_config("mailgun_api_key") or get_app_config(
             "MAILGUN_API_KEY"
         )
+
+        def censor(s):
+            # censor the first 4 and last 4 characters
+            return "*" * (len(s) - 8) + s[-4:]
+
+        print(
+            {
+                "url": mailgun_base_url + "/messages",
+                "auth": ("api", censor(mailgun_api_key)),
+                "data": {
+                    "from": mailfrom_addr,
+                    "to": [addr],
+                    "subject": subject,
+                    "text": text,
+                },
+                "timeout": 1.0,
+            }
+        )
+
         try:
             r = requests.post(
                 mailgun_base_url + "/messages",
@@ -38,6 +57,8 @@ class MailgunEmailProvider(EmailProvider):
                     error=type(e).__name__
                 ),
             )
+
+        print("RESPONSE: ", r.status_code, r.headers, r.text)
 
         if r.status_code == 200:
             return True, "Email sent"
