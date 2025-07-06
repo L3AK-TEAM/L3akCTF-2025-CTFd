@@ -10,6 +10,8 @@ alembic==1.4.3
     #   flask-migrate
 aniso8601==8.0.0
     # via flask-restx
+apscheduler==3.11.0
+    # via dsp put it here cause it's a dep for the instance plugin
 attrs==20.3.0
     # via jsonschema
 babel==2.12.1
