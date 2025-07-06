@@ -1,0 +1,30 @@
+{% extends "challenge.html" %} {% block connection_info %}
+<div class="mb-3 text-center deployment-actions">
+  <!-- I dont event know why <script> not work in core-beta so .... -->
+  <img class="d-none" src onerror="view_container_info({{ challenge.id }})" />
+  <div class="alert alert-primary" id="deployment-info"></div>
+  <span>
+    <button
+      onclick="container_request({{ challenge.id }})"
+      class="btn btn-primary d-none"
+      id="create-chal"
+    >
+      <small style="color: white"> Fetch Instance </small>
+    </button>
+    <button
+      onclick="container_renew({{ challenge.id }})"
+      class="extend-chal btn btn-info d-none"
+      id="extend-chal"
+    >
+      <small style="color: white"> Extend Time </small>
+    </button>
+    <button
+      onclick="container_stop({{ challenge.id }})"
+      class="terminate-chal btn btn-danger d-none"
+      id="terminate-chal"
+    >
+      <small style="color: white"> Terminate </small>
+    </button>
+  </span>
+</div>
+{% endblock %}
